@@ -1,0 +1,134 @@
+a {
+ color: black;
+}
+
+a:visited {
+  color: dimgrey;
+}
+hr {
+  border-style: solid;
+}
+
+hr.double {
+  padding: 1px;
+  border-left: none;
+  border-right: none;
+  border-top: 2px solid;
+}
+
+h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 2.83em;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 48px;
+  font-variant: small-caps;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0.83em 0;
+
+  .small-uppercase {
+    margin: 0;
+    font-weight: 400;
+  }
+}
+
+
+.home, .volume {
+  h1 {
+    margin-bottom: 0.415em;
+  }
+
+  h1 + p.small-uppercase {
+    margin: 0;
+  }
+
+  [itemProp="alternativeHeadline"] {
+    margin-top: 0;
+  }
+}
+
+[itemProp="alternativeHeadline"] {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 45px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 48px;
+  align-items: center;
+}
+[itemProp="alternativeHeadline"] em {
+  font-style: normal;
+}
+
+h2 {
+  text-align: center;
+  a {
+    text-decoration: none;
+  }
+}
+
+header * {
+  text-align: center;
+}
+
+.wrapper {
+  flex: 1 1 auto;
+  flex-direction: row;
+  display: flex;
+}
+
+p, .small-uppercase {
+  font-size: 16px;
+  line-height: 24px;
+  margin: 24px 0;
+
+  font-family: 'Libre Baskerville', serif;
+  font-weight: 400;
+  font-style: normal;
+}
+.small-uppercase, .smaller-uppercase {
+  word-spacing: 0.2em;
+  letter-spacing: 0.4em;
+}
+
+.small-uppercase {
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+.smaller-uppercase {
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+p em {
+  font-variant: small-caps;
+  font-style: normal;
+}
+
+.flower h1 {
+  margin: 0.83em 0 0 0;
+}
+
+[itemProp="alternateName"] {
+  display: block;
+  text-align: center;
+  margin-bottom: 0.83em;
+}
+
+h2 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.5em;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 48px;
+  text-transform: uppercase;
+  align-items: center;
+  margin: 0.83em 0;
+
+  .small-uppercase {
+    margin: 0;
+  }
+}
