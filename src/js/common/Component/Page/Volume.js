@@ -30,7 +30,7 @@ class Volume extends Component {
 
         <div itemScope itemType="http://schema.org/Book">
           <header>
-            <link itemProp="additionalType" href="http://schema.org/Product"/>
+            <link itemProp="additionalType" href="http://schema.org/Product" />
             <h1 itemProp="name">
               <span className="small-uppercase">The</span> <span>Botanical Magazine, </span>
               <span>Volume {roman.roman(this.props.volume.number)}</span>
@@ -64,7 +64,7 @@ class Volume extends Component {
           <footer>
             <div>
               <Link to="/">The Botanical Magazine</Link>&nbsp;-&nbsp;
-              <VolumeLink number={this.props.volume.number}/>
+              <VolumeLink number={this.props.volume.number} />
               &nbsp;by&nbsp;
               <a href="https://en.wikipedia.org/wiki/William_Curtis">
                 William Curtis

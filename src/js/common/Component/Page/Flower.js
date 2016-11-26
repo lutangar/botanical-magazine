@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import Link from '../Link'
-import VolumeLink from '../Volume/VolumeLink'
-import FlowerLink from '../Flower/FlowerLink'
+import Link from '../Link';
+import VolumeLink from '../Volume/VolumeLink';
+import FlowerLink from '../Flower/FlowerLink';
 
 class Flower extends Component {
   static propTypes = {
@@ -69,9 +69,14 @@ class Flower extends Component {
             <p itemProp="description">{this.props.flower.description}</p>
           </div>
           <figure className="illustration">
-            <img itemProp="image" src={`/img/flower/${this.props.flower.image}`} alt={this.props.flower.latinName} />
+            <img
+              itemProp="image"
+              src={`/img/flower/${this.props.flower.image}`}
+              alt={this.props.flower.latinName}
+            />
             <figcaption>
-              Illustration of <em>{this.props.flower.latinName}</em> drawn from the living plant and coloured as near to nature.
+              Illustration of <em>{this.props.flower.latinName}</em>&nbsp;
+              drawn from the living plant and coloured as near to nature.
             </figcaption>
           </figure>
 

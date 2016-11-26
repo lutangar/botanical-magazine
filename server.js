@@ -46,6 +46,7 @@ function renderFullPage(html, preloadedState) {
     <html lang="en">
       <head>
         <meta charset="UTF-8" />
+        <meta name="google-site-verification" content="lM0Zw8iYFyjkcI17heyT4fMnvP0hDoTT2gKidcMrMrA" />
         <meta name="viewport" content="width=device-width" />
         <title>The Botanic Magazine or, Flower-Garden Displayed</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville">

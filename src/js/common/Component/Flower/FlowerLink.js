@@ -6,6 +6,7 @@ class FlowerLink extends Component {
     flower: React.PropTypes.shape({
       slug: React.PropTypes.string,
       latinName: React.PropTypes.string,
+      commonName: React.PropTypes.string,
       volume: React.PropTypes.number,
     }).isRequired,
     itemProp: React.PropTypes.string,

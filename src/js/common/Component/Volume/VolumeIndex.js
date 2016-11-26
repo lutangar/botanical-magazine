@@ -1,13 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import FlowerLink from '../Flower/FlowerLink';
-import VolumeLink from '../Volume/VolumeLink';
 
 class VolumeIndex extends Component {
   static propTypes = {
-    number: React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.number,
-    ]).isRequired,
     flowers: PropTypes.array.isRequired,
   };
 
@@ -27,7 +22,7 @@ class VolumeIndex extends Component {
           </li>
         )}
       </ol>
-    )
+    );
   }
 }
 

@@ -1,8 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import VolumeIndex from '../Volume/VolumeIndex';
 import VolumeLink from '../Volume/VolumeLink';
 
 class Home extends Component {
+  static propTypes = {
+    volumes: PropTypes.array.isRequired,
+  };
+
+  static defaultProps = {
+    volumes: [],
+  };
+
   render() {
     return (
       <div className="home" itemScope itemType="https://schema.org/BookSeries">
@@ -41,15 +49,17 @@ class Home extends Component {
           <hr />
 
           <p>
-            By <a href="https://en.wikipedia.org/wiki/William_Curtis">
-            <span itemProp="author" >WILLIAM CURTIS</span></a>,
+            By&nbsp;
+            <a href="https://en.wikipedia.org/wiki/William_Curtis">
+              <span itemProp="author" >WILLIAM CURTIS</span>
+            </a>,
           </p>
 
           <p>
             Author of the <a itemProp="isRelatedTo" href="https://en.wikipedia.org/wiki/Flora_Londinensis"><em>Flora Londinensis</em></a>.
           </p>
 
-          <hr className="double"/>
+          <hr className="double" />
 
           <p className="small-uppercase">LONDON:</p>
           <p className="small-uppercase">Printed by Couchman and Fry, Throgmorton-Street,</p>

@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
-import Link from '../Link';
 import roman from 'roman-decimal';
+import Link from '../Link';
 
 class VolumeLink extends Component {
   static propTypes = {
