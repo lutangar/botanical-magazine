@@ -10,7 +10,7 @@ hr {
 }
 
 hr.double {
-  padding: 1px;
+  padding: 2px;
   border-left: none;
   border-right: none;
   border-top: 2px solid;
@@ -63,6 +63,7 @@ h1 {
 }
 
 h2 {
+  font-size: 1.9em;
   text-align: center;
   a {
     text-decoration: none;
@@ -71,6 +72,13 @@ h2 {
 
 header * {
   text-align: center;
+}
+header p {
+  text-align: center;
+}
+section p {
+  text-align: left;
+  margin-left: 8px;
 }
 
 .wrapper {
@@ -103,9 +111,27 @@ p, .small-uppercase {
   text-transform: uppercase;
 }
 
-p em {
-  font-variant: small-caps;
-  font-style: normal;
+p {
+  &.initial {
+    .first-word {
+      font-variant: small-caps;
+      font-size: 26px;
+      letter-spacing: 2px;
+    }
+    &:first-letter {
+      line-height: 48px;
+      float: left;
+      font-size: 42px;
+    }
+  }
+  &.indentation {
+    text-indent: 24px;
+  }
+  em {
+    font-variant: small-caps;
+    font-style: normal;
+    letter-spacing: 1px;
+  }
 }
 
 .flower h1 {
@@ -131,4 +157,21 @@ h2 {
   .small-uppercase {
     margin: 0;
   }
+}
+.volume-index {
+  font-size: large;
+}
+
+figure {
+  blockquote {
+    text-align: center;
+
+    + figcaption {
+      text-align: right;
+    }
+  }
+}
+
+.itemProp {
+  display: none;
 }
