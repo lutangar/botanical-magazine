@@ -69,7 +69,7 @@ class Flower extends Component {
             <p itemProp="description">{this.props.flower.description}</p>
           </div>
           <figure className="illustration">
-            <img itemProp="image" src={`/img/${this.props.flower.image}`} alt={this.props.flower.latinName} />
+            <img itemProp="image" src={`/img/flower/${this.props.flower.image}`} alt={this.props.flower.latinName} />
             <figcaption>
               Illustration of <em>{this.props.flower.latinName}</em> drawn from the living plant and coloured as near to nature.
             </figcaption>
@@ -84,10 +84,10 @@ class Flower extends Component {
                     <li>{page}</li>
                   )}
                 </ul>
-              } of <Link itemProp="item" to="/">The Botanical Magazine</Link>&nbsp;-&nbsp;
-              <VolumeLink itemProp="item" number={this.props.flower.volume} />
+              } of <Link to="/">The Botanical Magazine</Link>&nbsp;-&nbsp;
+              <VolumeLink number={this.props.flower.volume} />
               &nbsp;by&nbsp;
-              <a itemProp="author" href="https://en.wikipedia.org/wiki/William_Curtis">
+              <a href="https://en.wikipedia.org/wiki/William_Curtis">
                 William Curtis
               </a>
             </div>

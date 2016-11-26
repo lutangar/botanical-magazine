@@ -43,8 +43,8 @@ function handleRender(req, res) {
 function renderFullPage(html, preloadedState) {
   return `
     <!doctype html>
-    <html>
-      <head lang="en">
+    <html lang="en">
+      <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
         <title>The Botanic Magazine or, Flower-Garden Displayed</title>

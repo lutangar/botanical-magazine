@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import roman from 'roman-decimal';
 import VolumeIndex from '../Volume/VolumeIndex';
 import VolumeLink from '../Volume/VolumeLink';
 import Link from '../Link';
@@ -16,7 +17,9 @@ class Volume extends Component {
       <div className="volume">
         <ol itemScope itemType="http://schema.org/BreadcrumbList" role="nav">
           <li itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
-            <Link itemProp="item isPartOf" to="/">The Botanical Magazine</Link>
+            <Link itemProp="item" to="/">
+              <span name="The Botanical Magazine">The Botanical Magazine</span>
+            </Link>
             <meta itemProp="position" content="1" />
           </li>
           <li itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
@@ -29,22 +32,13 @@ class Volume extends Component {
           <header>
             <link itemProp="additionalType" href="http://schema.org/Product"/>
             <h1 itemProp="name">
-              <span className="small-uppercase">The</span> <span>Botanical Magazine</span>
-              <span>Volume {this.props.volume.number}</span>
+              <span className="small-uppercase">The</span> <span>Botanical Magazine, </span>
+              <span>Volume {roman.roman(this.props.volume.number)}</span>
             </h1>
             <p className="small-uppercase">OR,</p>
             <p itemProp="alternativeHeadline"><em>Flower-Garden Displayed</em></p>
             <p><em itemProp="author">William Curtis</em></p>
           </header>
-          <dl>
-            {this.props.volume.numberOfPages &&
-              <dt>Original number of pages</dt>
-            }
-
-            {this.props.volume.numberOfPages &&
-              <dd itemProp="numberOfPages">{this.props.volume.numberOfPages}</dd>
-            }
-          </dl>
 
           {this.props.volume.quote &&
             <figure>
@@ -56,12 +50,23 @@ class Volume extends Component {
           }
 
           <VolumeIndex number={this.props.volume.number} flowers={this.props.volume.flowers} />
+
+          <dl>
+            {this.props.volume.numberOfPages &&
+              <dt>Original number of pages</dt>
+            }
+
+            {this.props.volume.numberOfPages &&
+              <dd itemProp="numberOfPages">{this.props.volume.numberOfPages}</dd>
+            }
+          </dl>
+
           <footer>
             <div>
-              <Link itemProp="item" to="/">The Botanical Magazine</Link>&nbsp;-&nbsp;
-              <VolumeLink itemProp="item" number={this.props.volume.number}/>
+              <Link to="/">The Botanical Magazine</Link>&nbsp;-&nbsp;
+              <VolumeLink number={this.props.volume.number}/>
               &nbsp;by&nbsp;
-              <a itemProp="author" href="https://en.wikipedia.org/wiki/William_Curtis">
+              <a href="https://en.wikipedia.org/wiki/William_Curtis">
                 William Curtis
               </a>
             </div>

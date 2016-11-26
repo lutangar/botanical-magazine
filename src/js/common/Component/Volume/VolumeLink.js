@@ -9,9 +9,20 @@ class VolumeLink extends Component {
   };
 
   render() {
+    const linkProps = {};
+    if (this.props.itemProp) {
+      linkProps.itemProp = this.props.itemProp;
+    }
+    const spanProps = {};
+    if (this.props.itemProp) {
+      spanProps.itemProp = 'name';
+    }
     return (
-      <Link itemProp={this.props.itemProp} to={`/volume/${this.props.number}`}>
-        <span itemProp="name">Volume {roman.roman(this.props.number)}</span>
+      <Link {...linkProps} to={`/volume/${this.props.number}`}>
+        <span {...spanProps}>
+          <span className="itemProp">The Botanical Magazine, </span>
+          Volume {roman.roman(this.props.number)}
+        </span>
       </Link>
     );
   }

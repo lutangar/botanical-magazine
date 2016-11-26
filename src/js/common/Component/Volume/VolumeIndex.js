@@ -17,16 +17,17 @@ class VolumeIndex extends Component {
 
   render() {
     return (
-      <section className="volume-index">
-        {this.props.flowers.length > 0 &&
-          <ol start={this.props.flowers[0].id}>
-            {this.props.flowers.map((flower, i) =>
-              <li><FlowerLink key={i} flower={flower} /></li>
-            )}
-          </ol>
-        }
-      </section>
-    );
+      <ol
+        className="volume-index"
+        start={this.props.flowers.length > 0 ? this.props.flowers[0].id : 0}
+      >
+        {this.props.flowers.map((flower, i) =>
+          <li itemScope itemProp="hasPart" itemType="https://schema.org/CreativeWork">
+            <FlowerLink key={i} flower={flower} isPartOf />
+          </li>
+        )}
+      </ol>
+    )
   }
 }
 
