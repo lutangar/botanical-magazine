@@ -28,9 +28,10 @@ class Volume extends Component {
           </li>
         </ol>
 
-        <div itemScope itemType="http://schema.org/Book">
+        <div itemScope itemType="http://schema.org/PublicationVolume">
+          <meta itemProp="volumeNumber" content={this.props.volume.number} />
           <header>
-            <link itemProp="additionalType" href="http://schema.org/Product" />
+            <link itemProp="additionalType" href="http://schema.org/DataCatalog" />
             <h1 itemProp="name">
               <span className="small-uppercase">The</span> <span>Botanical Magazine, </span>
               <span>Volume {roman.roman(this.props.volume.number)}</span>
@@ -38,6 +39,7 @@ class Volume extends Component {
             <p className="small-uppercase">OR,</p>
             <p itemProp="alternativeHeadline"><em>Flower-Garden Displayed</em></p>
             <p><em itemProp="author">William Curtis</em></p>
+            <p><em itemProp="datePublished">{this.props.volume.datePublished}</em></p>
           </header>
 
           {this.props.volume.quote &&
@@ -51,30 +53,32 @@ class Volume extends Component {
 
           <VolumeIndex number={this.props.volume.number} flowers={this.props.volume.flowers} />
 
-          <dl>
-            {this.props.volume.numberOfPages &&
+          {this.props.volume.numberOfPages &&
+            <dl>
               <dt>Original number of pages</dt>
-            }
-
-            {this.props.volume.numberOfPages &&
               <dd itemProp="numberOfPages">{this.props.volume.numberOfPages}</dd>
-            }
-          </dl>
+            </dl>
+          }
 
           <footer>
-            <div>
-              <Link to="/">The Botanical Magazine</Link>&nbsp;-&nbsp;
+            <p>
+              <span itemScope itemProp="isPartOf" itemType="https://schema.org/BookSeries">
+                <Link itemProp="url" to="/">
+                  <span itemProp="name">The Botanical Magazine</span>
+                </Link>&nbsp;-&nbsp;
+              </span>
+
               <VolumeLink number={this.props.volume.number} />
               &nbsp;by&nbsp;
               <a href="https://en.wikipedia.org/wiki/William_Curtis">
                 William Curtis
               </a>
-            </div>
-            <div>
+            </p>
+            <p>
               <a itemProp="sameAs" href={this.props.volume.sameAs}>
                 See this book at Gutemberg.org
               </a>
-            </div>
+            </p>
           </footer>
         </div>
       </div>

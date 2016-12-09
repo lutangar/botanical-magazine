@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import VolumeIndex from '../Volume/VolumeIndex';
 import VolumeLink from '../Volume/VolumeLink';
+import PersonLink from '../PersonLink';
 
 class Home extends Component {
   static propTypes = {
@@ -13,7 +14,8 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="home" itemScope itemType="https://schema.org/BookSeries">
+      <div className="home" itemScope itemType="https://schema.org/Periodical">
+        <link itemProp="additionalType" href="http://schema.org/DataCatalog" />
         <header>
           <h1 itemProp="name">
             <span className="small-uppercase">The</span> <span>Botanical Magazine;</span>
@@ -31,7 +33,8 @@ class Home extends Component {
 
           <p>
             Their Names, Class, Order, Generic and Specific Characters, according to
-          the celebrated <em><a itemProp="mentions" href="https://en.wikipedia.org/wiki/Carl_Linnaeus">Linn&aelig;us</a></em> ;
+          the celebrated <em>
+            <PersonLink prop="mentions" name="Linn&aelig;us" url="https://en.wikipedia.org/wiki/Carl_Linnaeus" /></em> ;
             their Places of Growth, and Times of Flowering :
           </p>
 
@@ -50,13 +53,17 @@ class Home extends Component {
 
           <p>
             By&nbsp;
-            <a href="https://en.wikipedia.org/wiki/William_Curtis">
-              <span itemProp="author" >WILLIAM CURTIS</span>
-            </a>,
+            <PersonLink
+              prop="author"
+              name="WILLIAM CURTIS"
+              url="https://en.wikipedia.org/wiki/William_Curtis"
+            />,
           </p>
 
           <p>
-            Author of the <a itemProp="isRelatedTo" href="https://en.wikipedia.org/wiki/Flora_Londinensis"><em>Flora Londinensis</em></a>.
+            Author of the <a itemProp="citation" itemScope itemType="https://schema.org/CreativeWork" href="https://en.wikipedia.org/wiki/Flora_Londinensis">
+            <em itemProp="name">Flora Londinensis</em>
+          </a>.
           </p>
 
           <hr className="double" />
@@ -116,7 +123,8 @@ class Home extends Component {
           </p>
         </section>
         {this.props.volumes.map((volume, i) =>
-          <section itemScope itemProp="hasPart" itemType="http://schema.org/Book">
+          <section itemScope itemProp="hasPart" itemType="http://schema.org/PublicationVolume">
+            <link itemProp="additionalType" href="http://schema.org/DataCatalog" />
             <h2 itemProp="name"><VolumeLink number={volume.number} /></h2>
             <VolumeIndex key={i} number={volume.number} flowers={volume.flowers} />
           </section>
