@@ -17,15 +17,16 @@ class FlowerLink extends Component {
     isPartOf: false,
   };
 
-
   render() {
     const linkProps = {};
     if (this.props.itemProp) {
       linkProps.itemProp = this.props.itemProp;
     }
+
     const spanProps = {};
     if (this.props.itemProp || this.props.isPartOf === true) {
       spanProps.itemProp = 'name';
+      linkProps.itemProp = 'url';
     }
 
     return (
