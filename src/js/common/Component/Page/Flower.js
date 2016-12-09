@@ -10,6 +10,7 @@ class Flower extends Component {
       volumeNumber: React.PropTypes.number,
       flowerSlug: React.PropTypes.string,
     }).isRequired,
+    router: PropTypes.object,
   };
 
   static defaultProps = {
@@ -20,10 +21,19 @@ class Flower extends Component {
     },
   };
 
+  constructor(props) {
+    super(props);
+
+    if (!props.flower.id) {
+      props.router.replace('/404');
+    }
+  }
+
   render() {
+    // parse description for: flower names, country, reference (what kind?)
     return (
       <div className="flower">
-        <ol itemScope itemType="http://schema.org/BreadcrumbList" role="nav">
+        <ol itemScope itemType="http://schema.org/BreadcrumbList">
           <li itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
             <Link itemProp="item" to="/">The Botanical Magazine</Link>
             <meta itemProp="position" content="1" />
@@ -38,48 +48,62 @@ class Flower extends Component {
           </li>
         </ol>
 
-        <section itemScope itemType="http://schema.org/Thing">
-          <div className="sheet">
-            <h1 itemProp="name">{this.props.flower.latinName}</h1>
-            {this.props.flower.commonName &&
-              <em itemProp="alternateName">{this.props.flower.commonName}</em>
-            }
-            <dl>
-              {this.props.flower.classAndOrder &&
-                <dt>Class and Order</dt>
-              }
-              {this.props.flower.classAndOrder &&
-                <dd itemProp="category">{this.props.flower.classAndOrder}</dd>
-              }
+        <article itemScope itemType="http://schema.org/Dataset">
+          <meta itemProp="position" content={this.props.flower.id} />
 
-              {this.props.flower.genericCharacters.length > 0 &&
-                <dt>Generic Character</dt>
-              }
-              {this.props.flower.genericCharacters.map(genericCharacter =>
-                <dd>{genericCharacter}</dd>
-              )}
+          <div className="mdl-grid">
+            <div className="sheet mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+              <div id="title">
+                <h1 itemProp="name">{this.props.flower.latinName}</h1>
+                {this.props.flower.commonName &&
+                  <em itemProp="alternateName">{this.props.flower.commonName}</em>
+                }
+              </div>
+              <dl>
+                {this.props.flower.classAndOrder &&
+                  <dt>Class and Order</dt>
+                }
+                {this.props.flower.classAndOrder &&
+                  <dd id="category" className="class-and-order" itemProp="genre">
+                    {this.props.flower.classAndOrder}
+                  </dd>
+                }
 
-              {this.props.flower.synonyms.length > 0 &&
-              <dt>Specific Character and Synonyms</dt>
-              }
-              {this.props.flower.synonyms.map(synonym =>
-                <dd>{synonym}</dd>
-              )}
-            </dl>
-            <p itemProp="description">{this.props.flower.description}</p>
+                {this.props.flower.genericCharacters.length > 0 &&
+                  <dt>Generic Character</dt>
+                }
+                {this.props.flower.genericCharacters.map(genericCharacter =>
+                  <dd>{genericCharacter}</dd>
+                )}
+
+                {this.props.flower.synonyms.length > 0 &&
+                <dt>Specific Character and Synonyms</dt>
+                }
+                {this.props.flower.synonyms.map(synonym =>
+                  <dd>{synonym}</dd>
+                )}
+              </dl>
+
+              <hr />
+
+              <section itemProp="description">
+                {this.props.flower.description.split('\n').map(paragraph =>
+                  <p className="indentation">{paragraph}</p>
+                )}
+              </section>
+            </div>
+            <figure className="illustration mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+              <img
+                id="image"
+                itemProp="image"
+                src={`/img/flower/${this.props.flower.image}`}
+                alt={this.props.flower.latinName}
+              />
+              <figcaption>
+                Illustration of <em>{this.props.flower.latinName}</em> drawn from the living plant and coloured as near to nature.
+              </figcaption>
+            </figure>
           </div>
-          <figure className="illustration">
-            <img
-              itemProp="image"
-              src={`/img/flower/${this.props.flower.image}`}
-              alt={this.props.flower.latinName}
-            />
-            <figcaption>
-              Illustration of <em>{this.props.flower.latinName}</em>&nbsp;
-              drawn from the living plant and coloured as near to nature.
-            </figcaption>
-          </figure>
-
           <footer>
             <div>
               Originally appears at pages
@@ -90,17 +114,22 @@ class Flower extends Component {
                   )}
                 </ul>
               } of <Link to="/">The Botanical Magazine</Link>&nbsp;-&nbsp;
-              <VolumeLink number={this.props.flower.volume} />
+              <VolumeLink itemProp="isPartOf" number={this.props.flower.volume} />
               &nbsp;by&nbsp;
-              <a href="https://en.wikipedia.org/wiki/William_Curtis">
-                William Curtis
-              </a>
+              <a
+                itemScope
+                itemProp="author"
+                itemType="https://schema.org/Person"
+                href="https://en.wikipedia.org/wiki/William_Curtis"
+              >
+                <span id="author" itemProp="name">William Curtis</span>
+              </a> published in <span className="datePublished" itemProp="datePublished">{this.props.flower.datePublished}</span>
             </div>
             <div>
               <a itemProp="sameAs" href={this.props.flower.sameAs}>See the original pages at Gutemberg.org</a>
             </div>
           </footer>
-        </section>
+        </article>
       </div>
     );
   }
