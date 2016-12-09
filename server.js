@@ -21,8 +21,9 @@ function handleRender(req, res) {
     if (err) {
       return res.status(500).end('Internal server error');
     }
-    if (!renderProps) {
-      return res.status(404).end('Not found.');
+
+    if (!renderProps || renderProps == undefined || renderProps.location.pathname == '/404') {
+      res.status(404);
     }
 
     // Render the component to a string
