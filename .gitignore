@@ -3,7 +3,8 @@ node_modules
 .DS_Store
 .AppleDouble
 .LSOverride
-dist/
-downloads/*
+downloads
+pdfs
+htmls
 public/img/flower/
 public/js/
