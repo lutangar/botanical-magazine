@@ -1,3 +1,9 @@
+@import "grid";
+
+* {
+  font-family: Libre Baskerville, serif;
+}
+
 a {
  color: black;
 }
@@ -5,8 +11,10 @@ a {
 a:visited {
   color: dimgrey;
 }
+
 hr {
   border-style: solid;
+  color: dimgrey;
 }
 
 hr.double {
@@ -34,7 +42,6 @@ h1 {
     font-weight: 400;
   }
 }
-
 
 .home, .volume {
   h1 {
@@ -89,8 +96,8 @@ section p {
 
 p, .small-uppercase {
   font-size: 16px;
-  line-height: 24px;
-  margin: 24px 0;
+  line-height: 1.5em;
+  margin: 1.5em 0;
 
   font-family: 'Libre Baskerville', serif;
   font-weight: 400;
@@ -125,7 +132,7 @@ p {
     }
   }
   &.indentation {
-    text-indent: 24px;
+    text-indent: 1.5em;
   }
   em {
     font-variant: small-caps;
@@ -134,9 +141,12 @@ p {
   }
 }
 
-.flower h1 {
-  margin: 0.83em 0 0 0;
+.flower {
+  h1 {
+    margin: 0.83em 0 0 0;
+  }
 }
+
 
 [itemProp="alternateName"] {
   display: block;
@@ -174,4 +184,86 @@ figure {
 
 .itemProp {
   display: none;
+}
+
+[itemType='http://schema.org/BreadcrumbList'] {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  flex-wrap: wrap;
+
+  li a {
+    display: block;
+    padding: 4px;
+    font-size: smaller;
+  }
+}
+
+dl {
+  font-size: 14px;
+  line-height: 16px;
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+
+  dt {
+    font-style: italic;
+    margin-top: 15px;
+    margin-bottom: 3px;
+  }
+
+  dd {
+    margin-left: 1.5em;
+    &.class-and-order {
+      font-variant: small-caps;
+      font-style: normal;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+.illustration {
+  img {
+    width: 100%;
+  }
+  figcaption {
+    text-align: center;
+    font-style: italic;
+    padding: 5px;
+    color: dimgrey;
+
+    em {
+      font-variant: small-caps;
+      letter-spacing: 1px;
+    }
+  }
+}
+
+footer {
+  text-align: center;
+  color: grey;
+
+  a {
+    color: grey;
+  }
+
+  ul {
+    display: inline;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline;
+      margin: 0;
+      padding: 0;
+      padding-left: 6px;
+    }
+  }
+}
+
+.taxonomy {
+  list-style-type: upper-roman;
 }
