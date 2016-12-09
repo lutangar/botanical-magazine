@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Flower from '../Component/Page/Flower';
+import { withRouter } from 'react-router'
 
 function mapStateToProps(state, ownProps) {
   return {
@@ -7,4 +8,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(Flower);
+export default connect(mapStateToProps)(withRouter(Flower));
