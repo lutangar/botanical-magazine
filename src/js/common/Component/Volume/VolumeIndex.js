@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import FlowerLink from '../Flower/FlowerLink';
+import FlowerCard from '../Flower/FlowerCard';
 
 class VolumeIndex extends Component {
   static propTypes = {
@@ -13,12 +13,12 @@ class VolumeIndex extends Component {
   render() {
     return (
       <ol
-        className="volume-index"
+        className="plates"
         start={this.props.flowers.length > 0 ? this.props.flowers[0].id : 0}
       >
         {this.props.flowers.map((flower, i) =>
           <li itemScope itemProp="hasPart" itemType="https://schema.org/Dataset">
-            <FlowerLink key={i} flower={flower} isPartOf />
+            <FlowerCard flower={flower} />
           </li>
         )}
       </ol>

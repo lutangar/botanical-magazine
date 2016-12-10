@@ -266,4 +266,78 @@ footer {
 
 .taxonomy {
   list-style-type: upper-roman;
+  font-variant: small-caps;
+}
+
+.page-link {
+  box-shadow: 0 1px 1.5px 0 rgba(0,0,0,0.12), 0 1px 1px 0 rgba(0,0,0,0.24);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  width: 10em;
+  height: 5em;
+  background-color: white;
+  font-variant: small-caps;
+  text-decoration: none;
+  &.page-link--next {
+    right: 0;
+  }
+
+  &.page-link--previous {
+    left: 0;
+  }
+}
+
+.plates {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.plate {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1px 1.5px 0 rgba(0,0,0,0.12), 0 1px 1px 0 rgba(0,0,0,0.24);
+  overflow: hidden;
+  border-radius: 2px;
+  margin: 0.84em;
+
+  .plate__background {
+    position: relative;
+    display: flex;
+    height: 14em;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px;
+    .plate__number {
+      position: absolute;
+      right: 16px;
+      top: 16px;
+      font-family: 'Pinyon Script', cursive;
+    }
+  }
+  [itemProp="alternateName"] {
+    color: rgba(0,0,0,.54);
+    line-height: 18px;
+    overflow: hidden;
+    padding: 0 16px 24px 16px;
+    margin: 0;
+    text-align: left;
+    font-size: 14px;
+  }
+
+  .plate__title {
+    margin: 0;
+    padding: 24px 16px 0 16px;
+    font-weight: 500;
+    font-variant: small-caps;
+  }
+
 }

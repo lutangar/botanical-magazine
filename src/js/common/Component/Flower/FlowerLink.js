@@ -3,14 +3,20 @@ import Link from '../Link';
 
 class FlowerLink extends Component {
   static propTypes = {
-    flower: React.PropTypes.shape({
-      slug: React.PropTypes.string,
-      latinName: React.PropTypes.string,
-      commonName: React.PropTypes.string,
-      volume: React.PropTypes.number,
+    flower: PropTypes.shape({
+      slug: PropTypes.string,
+      latinName: PropTypes.string,
+      commonName: PropTypes.string,
+      volume: PropTypes.number,
     }).isRequired,
-    itemProp: React.PropTypes.string,
-    isPartOf: React.PropTypes.bool,
+    itemScope: PropTypes.bool,
+    itemProp: PropTypes.string,
+    isPartOf: PropTypes.bool,
+    className: PropTypes.string,
+    children: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.string,
+    ]),
   };
 
   static defaultProps = {
@@ -19,7 +25,9 @@ class FlowerLink extends Component {
 
   render() {
     const linkProps = {};
+    linkProps.className = this.props.className;
     if (this.props.itemProp) {
+      linkProps.itemScope = this.props.itemScope;
       linkProps.itemProp = this.props.itemProp;
     }
 
@@ -31,9 +39,11 @@ class FlowerLink extends Component {
 
     return (
       <Link {...linkProps} to={`/flower/${this.props.flower.slug}`}>
-        <span {...spanProps}>
-          {this.props.flower.latinName}, {this.props.flower.commonName}
-        </span>
+        {this.props.children ||
+          <span {...spanProps}>
+            {`${this.props.flower.commonName}, ${this.props.flower.commonName}`}
+          </span>
+        }
       </Link>
     );
   }

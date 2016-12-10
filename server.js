@@ -50,7 +50,8 @@ function renderFullPage(html, preloadedState) {
         <meta name="google-site-verification" content="lM0Zw8iYFyjkcI17heyT4fMnvP0hDoTT2gKidcMrMrA" />
         <meta name="viewport" content="width=device-width" />
         <title>The Botanic Magazine or, Flower-Garden Displayed</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pinyon+Script" />
       </head>
       <body>
         <div id="root">${html}</div>

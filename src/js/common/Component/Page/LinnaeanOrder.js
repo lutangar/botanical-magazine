@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import FlowerLink from '../Flower/FlowerLink';
+import FlowerCard from '../Flower/FlowerCard';
 import Link from '../Link';
 
 class LinnaeanOrder extends Component {
@@ -53,12 +53,12 @@ class LinnaeanOrder extends Component {
             )}
           </section>
 
-          <ul>
-          {this.props.flowers.map((flower, i) =>
-            <li itemScope itemProp="hasPart" itemType="https://schema.org/Dataset">
-              <FlowerLink key={i} flower={flower} isPartOf />
-            </li>
-          )}
+          <ul className="plates">
+            {this.props.flowers.map((flower, i) =>
+              <li itemScope itemProp="hasPart" itemType="https://schema.org/Dataset">
+                <FlowerCard flower={flower} />
+              </li>
+            )}
           </ul>
 
           <footer>
