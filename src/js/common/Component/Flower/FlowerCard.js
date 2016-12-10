@@ -11,22 +11,22 @@ class FlowerCard extends Component {
     return (
       <FlowerLink
         flower={this.props.flower}
-        className="plate shadow--2d"
-        itemProp="http://schema.org/Dataset"
+        className="plate plate--thumbnail"
         itemScope
-        hasPart={this.props.hasPart}
+        isPartOf
       >
-        <meta itemProp="position" content={this.props.flower.id} />
         <div
           className="plate__background"
-          style={{ background: `url('/img/flower/${this.props.flower.image}') top / cover` }}
+          style={{ background: `url('/img/flower/${this.props.flower.image.name}') top / cover` }}
         >
-          <span className="plate__number">{this.props.flower.id}</span>
+          <span className="plate__number" itemProp="position">{this.props.flower.id}</span>
         </div>
-        <h3 className="plate__title" itemProp="name">{this.props.flower.latinName}</h3>
-        {this.props.flower.commonName &&
-          <em itemProp="alternateName">{this.props.flower.commonName}</em>
-        }
+        <div className="plate__text">
+          <h3 className="plate__title" itemProp="name">{this.props.flower.latinName}</h3>
+          {this.props.flower.commonName &&
+            <em itemProp="alternateName">{this.props.flower.commonName}</em>
+          }
+        </div>
       </FlowerLink>
     );
   }

@@ -14,9 +14,10 @@ class FlowerLink extends Component {
     isPartOf: PropTypes.bool,
     className: PropTypes.string,
     children: PropTypes.oneOfType([
+      PropTypes.arrayOf(PropTypes.element),
       PropTypes.element,
       PropTypes.string,
-    ]),
+    ])
   };
 
   static defaultProps = {
@@ -28,6 +29,7 @@ class FlowerLink extends Component {
     linkProps.className = this.props.className;
     if (this.props.itemProp) {
       linkProps.itemScope = this.props.itemScope;
+      linkProps.itemType = 'http://schema.org/Dataset';
       linkProps.itemProp = this.props.itemProp;
     }
 
@@ -41,7 +43,7 @@ class FlowerLink extends Component {
       <Link {...linkProps} to={`/flower/${this.props.flower.slug}`}>
         {this.props.children ||
           <span {...spanProps}>
-            {`${this.props.flower.commonName}, ${this.props.flower.commonName}`}
+            {`${this.props.flower.latinName}, ${this.props.flower.commonName}`}
           </span>
         }
       </Link>
