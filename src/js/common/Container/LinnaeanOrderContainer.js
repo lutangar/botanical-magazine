@@ -1,8 +1,13 @@
 import { connect } from 'react-redux';
 import LinnaeanOrder from '../Component/Page/LinnaeanOrder';
+import { withRouter } from 'react-router'
 
 function mapStateToProps(state, ownProps) {
   const order = state.orders.find(order => order.slug === ownProps.params.orderSlug);
+
+  if (!order) {
+    return {};
+  }
 
   return {
     order,
@@ -10,4 +15,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(LinnaeanOrder);
+export default connect(mapStateToProps)(withRouter(LinnaeanOrder));

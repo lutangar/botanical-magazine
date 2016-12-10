@@ -1,8 +1,13 @@
 import { connect } from 'react-redux';
 import LinnaeanClass from '../Component/Page/LinnaeanClass';
+import { withRouter } from 'react-router'
 
 function mapStateToProps(state, ownProps) {
   const classe = state.classes.find(c => c.slug === ownProps.params.classSlug);
+
+  if (!classe) {
+    return {};
+  }
 
   return {
     class: classe,
@@ -10,4 +15,4 @@ function mapStateToProps(state, ownProps) {
   };
 }
 
-export default connect(mapStateToProps)(LinnaeanClass);
+export default connect(mapStateToProps)(withRouter(LinnaeanClass));

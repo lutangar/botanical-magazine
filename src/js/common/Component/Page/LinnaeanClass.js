@@ -16,10 +16,21 @@ class LinnaeanClass extends Component {
   };
 
   static defaultProps = {
+    class: {
+      description: '',
+    },
     classes: [],
     orders: [],
     flowers: [],
   };
+
+  constructor(props) {
+    super(props);
+
+    if (!props.class.id) {
+      props.router.replace('/404');
+    }
+  }
 
   render() {
     return (
@@ -39,7 +50,7 @@ class LinnaeanClass extends Component {
           </li>
           <li itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
             <Link itemProp="item" to={`/class/${this.props.class.slug}`}>
-              Class <em itemProp="name">{this.props.class.name}</em>
+              <em itemProp="name">{this.props.class.name}</em> class
             </Link>
             <meta itemProp="position" content="2" />
           </li>

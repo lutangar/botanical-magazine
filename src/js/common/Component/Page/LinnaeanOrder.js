@@ -15,8 +15,19 @@ class LinnaeanOrder extends Component {
   };
 
   static defaultProps = {
+    order: {
+      description: '',
+    },
     flowers: [],
   };
+
+  constructor(props) {
+    super(props);
+
+    if (!props.order.id) {
+      props.router.replace('/404');
+    }
+  }
 
   render() {
     return (
@@ -36,7 +47,7 @@ class LinnaeanOrder extends Component {
           </li>
           <li itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
             <Link itemProp="item" to={`/order/${this.props.order.slug}`}>
-              Class <em itemProp="name">{this.props.order.name}</em>
+              <em itemProp="name">{this.props.order.name}</em> order
             </Link>
             <meta itemProp="position" content="3" />
           </li>
