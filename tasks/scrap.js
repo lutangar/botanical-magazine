@@ -5,6 +5,7 @@ import fs from 'fs';
 import slug from 'slug';
 import r from 'roman-decimal';
 import levenshtein from 'fast-levenshtein';
+import sizeOf from 'image-size';
 
 const downloadDir = './downloads/';
 const imgDir = './public/img/flower/';
@@ -397,7 +398,7 @@ fs.readdir(downloadDir, (err, files ) => {
 
   files.forEach((file, index) => {
     fs.readFile(downloadDir+file, (err, data) => {
-      // if (file !== '23579-h.htm') {
+      // if (file !== '17531-h.htm') {
       //   return;
       // }
 
@@ -478,10 +479,13 @@ fs.readdir(downloadDir, (err, files ) => {
           flower.id = parseInt($('h2').text().match('[0-9]+')[0], 10);
         }
 
-        const allNames = $('h2 span.smcap, p.center').first().text().split('.').filter(name => name !== '').map(name => name.trim());
-        // console.log(allNames);
-        flower.latinName = allNames[0];
-        flower.commonName = allNames[1];
+        const allNames = $('h2 span.smcap, p.center').first().text().split(/\.|,/g).filter(name => name !== '').map(name => name.trim());
+
+        flower.latinName = allNames.splice(0, 1)[0];
+        flower.commonName = allNames.join(' ');
+        if (flower.latinName == "Franklin's Tartar") {
+          flower.commonName =  $('h2 + p.center + p.center i').text();
+        }
         // console.log(flower.latinName);
         flower.slug = slug(flower.latinName, {
           lower: true,
@@ -503,6 +507,10 @@ fs.readdir(downloadDir, (err, files ) => {
           flower.image = `${flower.id}_${slug(flower.latinName, { lower: true, replacement: '_', charmap })}.${imageExtension}`;
 
           const imagePath = `${imgDir}${flower.image }`;
+          flower.image = {
+            ...sizeOf(imagePath),
+            name: `${flower.id}_${slug(flower.latinName, { lower: true, replacement: '_', charmap })}.${imageExtension}`,
+          };
           const imageFullURL = `http://www.gutenberg.org/files/${volume.gutembergId}/${volume.gutembergId}-h/${imageURL}`;
 
           fs.exists(imagePath, (exists) => {
@@ -535,42 +543,44 @@ fs.readdir(downloadDir, (err, files ) => {
           .replace('.', '')
         ;
 
-        const classAndOrderParts = flower.classAndOrder.split(' ');
-        const className = classAndOrderParts.splice(0, 1)[0];
-        const classe = database.classes.sort((a, b) => {
-          let aLevenshtein = levenshtein.get(a.name, className);
-          let bLevenshtein = levenshtein.get(b.name, className);
-          if (aLevenshtein > bLevenshtein) {
-            return 1;
-          }
+        const classAndOrderParts = flower.classAndOrder.split(' ').filter(p => p != '');
+        console.log(classAndOrderParts);
+        if (classAndOrderParts.length) {
+          const className = classAndOrderParts.splice(0, 1)[0];
+          const classe = database.classes.sort((a, b) => {
+            let aLevenshtein = levenshtein.get(a.name, className);
+            let bLevenshtein = levenshtein.get(b.name, className);
+            if (aLevenshtein > bLevenshtein) {
+              return 1;
+            }
 
-          if (aLevenshtein < bLevenshtein) {
-            return -1;
-          }
+            if (aLevenshtein < bLevenshtein) {
+              return -1;
+            }
 
-          return 0;
-        })[0];
-        classe.flowers.push(flower.id);
+            return 0;
+          })[0];
+          classe.flowers.push(flower.id);
 
-        flower.class = classe.id;
+          flower.class = classe.id;
 
-        const orderName = classAndOrderParts.join(' ');
-        const order = database.orders.sort((a, b) => {
-          let aLevenshtein = levenshtein.get(a.name, orderName);
-          let bLevenshtein = levenshtein.get(b.name, orderName);
-          if (aLevenshtein > bLevenshtein) {
-            return 1;
-          }
+          const orderName = classAndOrderParts.join(' ');
+          const order = database.orders.sort((a, b) => {
+            let aLevenshtein = levenshtein.get(a.name, orderName);
+            let bLevenshtein = levenshtein.get(b.name, orderName);
+            if (aLevenshtein > bLevenshtein) {
+              return 1;
+            }
 
-          if (aLevenshtein < bLevenshtein) {
-            return -1;
-          }
+            if (aLevenshtein < bLevenshtein) {
+              return -1;
+            }
 
-          return 0;
-        })[0];
-
-        order.flowers.push(flower.id);
-        flower.order = order.id;
+            return 0;
+          })[0];
+          order.flowers.push(flower.id);
+          flower.order = order.id;
+        }
 
           flower.genericCharacters = $(
           'h2 + p + p.center + p + .hanging, ' +
@@ -594,19 +604,12 @@ fs.readdir(downloadDir, (err, files ) => {
           'h2 ~ p.center + p.center + p.center + p.center + div.blockquot + p.center + div.blockquot'
         )
           .map(function() {
-            console.log('caca', $(this).text());
             return $(this).text();
           })
           .get()
           .join(".\n\n")
           .split(".\n\n")
           .filter((c) => c !== '' ) || [];
-
-        console.log($(
-          'blockquote, ' +
-          'h2 + h3 + p.center + h3 + .hanging + h3 ~ .hanging, ' +
-          'h2 ~ p.center + p.center + p.center + p.center + div.blockquot + p.center + div.blockquot'
-        ).text());
 
         flower.description = $('h2 ~ p:not(.center)')
           .filter(function() { return $(this).find('span.pagenum').length == 0 })
