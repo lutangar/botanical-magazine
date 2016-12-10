@@ -119,7 +119,7 @@ fs.readdir(downloadDir, (err, files ) => {
       {
         id: 13,
         name: 'Polyandria',
-        description: 'flowers with many stamens, inserted on the receptacle.',
+        description: 'Flowers with many stamens, inserted on the receptacle.',
         orders: [1, 2, 3, 4, 5, 6, 13],
         classes: [],
         flowers: [],
@@ -127,7 +127,7 @@ fs.readdir(downloadDir, (err, files ) => {
       {
         id: 14,
         name: 'Didynamia',
-        description: 'flowers with 4 stamens, 2 long and 2 short.',
+        description: 'Flowers with 4 stamens, 2 long and 2 short.',
         orders: [141, 142],
         classes: [],
         flowers: [],
@@ -135,7 +135,7 @@ fs.readdir(downloadDir, (err, files ) => {
       {
         id: 15,
         name: 'Tetradynamia',
-        description: 'flowers with 6 stamens, 4 long and 2 short',
+        description: 'Flowers with 6 stamens, 4 long and 2 short',
         orders: [151, 152],
         classes: [],
         flowers: [],
@@ -143,7 +143,7 @@ fs.readdir(downloadDir, (err, files ) => {
       {
         id: 16,
         name: 'Monadelphia',
-        description: 'flowers with the anthers separate, but the filaments united, at least at the base',
+        description: 'Flowers with the anthers separate, but the filaments united, at least at the base.',
         classes: [3, 5, 7, 8, 10, 11, 13],
         orders: [],
         flowers: [],
@@ -151,7 +151,7 @@ fs.readdir(downloadDir, (err, files ) => {
       {
         id: 17,
         name: 'Diadelphia',
-        description: 'flowers with the stamens united in two separate groups.',
+        description: 'Flowers with the stamens united in two separate groups.',
         classes: [5, 6, 8, 10],
         orders: [],
         flowers: [],
@@ -159,7 +159,7 @@ fs.readdir(downloadDir, (err, files ) => {
       {
         id: 18,
         name: 'Polyadelphia',
-        description: 'flowers with the stamens united in several separate groups',
+        description: 'Flowers with the stamens united in several separate groups',
         classes: [11, 12, 13],
         orders: [],
         flowers: [],
@@ -167,7 +167,7 @@ fs.readdir(downloadDir, (err, files ) => {
       {
         id: 19,
         name: 'Syngenesia',
-        description: 'flowers with 5 stamens, the anthers united at their edges',
+        description: 'Flowers with 5 stamens, the anthers united at their edges',
         orders: [191, 192, 193, 194, 195, 196],
         classes: [],
         flowers: [],
@@ -175,7 +175,7 @@ fs.readdir(downloadDir, (err, files ) => {
       {
         id: 20,
         name: 'Gynandria',
-        description: 'flowers with the stamens united to the pistils',
+        description: 'Flowers with the stamens united to the pistils',
         classes: [1, 2, 3, 4, 5, 6, 8],
         orders: [],
         flowers: [],
@@ -183,7 +183,7 @@ fs.readdir(downloadDir, (err, files ) => {
       {
         id: 21,
         name: 'Monoecia',
-        description: 'monoecious plants; Consists of those which have a male and female organs in separate flowers, but on the same plant.',
+        description: 'Monoecious plants; Consists of those which have a male and female organs in separate flowers, but on the same plant.',
         classes: [1, 2, 3, 4, 5, 6, 13, 16],
         orders: [],
         flowers: [],
@@ -191,7 +191,7 @@ fs.readdir(downloadDir, (err, files ) => {
       {
         id: 22,
         name: 'Dioecia',
-        description: 'dioecious plants',
+        description: 'Dioecious plants;',
         classes: [1, 2, 3, 4, 5, 6, 13, 16],
         orders: [],
         flowers: [],
@@ -203,7 +203,7 @@ fs.readdir(downloadDir, (err, files ) => {
         id: 23,
         name: 'Polygamia',
         description:
-        'polygamodioecious plants. Stamina and pistilla seperate in some flowers, united in others, either on the same plant, or on two or three distinct plants; such difference in the essential organs beings accompanied with a diversity in the accessory parts of the flowers.' +
+        'Polygamodioecious plants. Stamina and pistilla seperate in some flowers, united in others, either on the same plant, or on two or three distinct plants; such difference in the essential organs beings accompanied with a diversity in the accessory parts of the flowers.' +
         '(From roAus, many, and Yauos, a marriage.) Polygamy. The name of a class of in the sexual system of Linnaeus consisting of polygamous plants or plants having hermaphrodite and likewise male and female flowers or both. The orders of this division are according to the uniformity or plan which runs through this system distinguished upon the principles of Classes Monaccia Diascia and Triacia.',
         classes: [21, 22],
         orders: [],
@@ -212,7 +212,7 @@ fs.readdir(downloadDir, (err, files ) => {
       {
         id: 24,
         name: 'Cryptogamia',
-        description: 'the "flowerless" plants, including ferns, fungi, algae, and bryophytes',
+        description: 'The "flowerless" plants, including ferns, fungi, algae, and bryophytes',
         orders: [241, 242, 243, 244],
         classes: [],
         flowers: [],
@@ -223,61 +223,61 @@ fs.readdir(downloadDir, (err, files ) => {
       {
         id: 1,
         name: "Monogynia",
-        description: "One pistil",
+        description: "Flowers with only one pistil.",
         flowers: [],
       },
       {
         id: 2,
         name: "Digynia",
-        description: "Two pistils",
+        description: "Flowers with two pistils.",
         flowers: [],
       },
       {
         id: 3,
         name: "Trigynia",
-        description: "Three pistils",
+        description: "Flowers with three pistils.",
         flowers: [],
       },
       {
         id: 4,
         name: "Tetragynia",
-        description: "Four pistils",
+        description: "Flowers with four pistils.",
         flowers: [],
       },
       {
         id: 5,
         name: "Pentagynia",
-        description: "Five pistils",
+        description: "Flowers with five pistils.",
         flowers: [],
       },
       {
         id: 6,
         name: "Hexagynia",
-        description: "Six pistils",
+        description: "Flowers with six pistils.",
         flowers: [],
       },
       {
         id: 7,
         name: "Heptagynia",
-        description: "Seven pistils",
+        description: "Flowers with seven pistils.",
         flowers: [],
       },
       {
         id: 10,
         name: "Decagynia",
-        description: "Ten pistils",
+        description: "Flowers with ten pistils.",
         flowers: [],
       },
       {
         id: 12,
         name: "Dodecagynia",
-        description: "Twelve pistils",
+        description: "Flowers with twelve pistils.",
         flowers: [],
       },
       {
         id: 13,
         name: "Polygynia",
-        description: "Many pistils",
+        description: "Flowers with many pistils.",
         flowers: [],
       },
 
@@ -363,21 +363,25 @@ fs.readdir(downloadDir, (err, files ) => {
       {
         id: 241,
         name: "Filices",
+        description: '',
         flowers: [],
       },
       {
         id: 242,
         name: "Musei",
+        description: '',
         flowers: [],
       },
       {
         id: 243,
         name: "Algæ",
+        description: '',
         flowers: [],
       },
       {
         id: 244,
         name: "Fungi",
+        description: '',
         flowers: [],
       }
     ]
