@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import VolumeIndex from '../Volume/VolumeIndex';
 import VolumeLink from '../Volume/VolumeLink';
 import PersonLink from '../PersonLink';
+import Link from '../Link';
 
 class Home extends Component {
   static propTypes = {
@@ -131,14 +132,24 @@ class Home extends Component {
         )}
 
         <footer>
-          <span itemProp="inLanguage">en-GB</span>
-          <span itemProp="isAccessibleForFree">true</span>
-          <a href="http://www.gutenberg.org/ebooks/author/7233">
-            More freed works from <span itemProp="author">William Curtis</span> can be found at Gutemberg.org
-          </a>
+          <p>
+            Flowers displayed in The Botanical Magazine are classified using &nbsp;
+            <Link to='/linnaean-system'>
+              The Classes and orders of the Linn&aelig;an System of Botany.
+            </Link>
+          </p>
+          <p itemProp="inLanguage">en-GB</p>
+          <p itemProp="isAccessibleForFree">true</p>
+          <p>
+            <a href="http://www.gutenberg.org/ebooks/author/7233">
+              More freed works from <span itemProp="author">William Curtis</span> can be found at Gutemberg.org
+            </a>
+          </p>
+          <p>
           <a itemProp="sameAs" href="https://en.wikipedia.org/wiki/Curtis's_Botanical_Magazine">
             Curtis's Botanical Magazine
           </a>
+          </p>
         </footer>
       </div>
     );
