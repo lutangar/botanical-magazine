@@ -10,7 +10,7 @@ At first, I was astonished by the beauty of the original illustrations.
 
 The content was *fairly* interesting but was a pain to navigate.
 As this content has been freed, I decided to scrap what I could from Gutemberg for a start.
-As I was refining the scrapping script, I finally achieved and came up with this quite complete *database*
+As I was refining the scrapping script, I finally came up with this quite complete *database*
 of the **first ten volumes** or so.
 
 This *database* come in the `Json` format and has been normalized to avoid any unnecessary data duplication:
@@ -23,7 +23,7 @@ This *database* come in the `Json` format and has been normalized to avoid any u
 }
 ```
 
-These data could easily be used as dummy data to try out some of new techs out there.
+These data would easily served as *dummy data* for any learning project.
 
 The `orders` and `classes` used at this time to classify the flowers are rather obsolete, but it was nonetheless interesting to dive into these raw materials from the 18th century.
 
