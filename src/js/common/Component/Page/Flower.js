@@ -10,6 +10,8 @@ class Flower extends Component {
       volumeNumber: React.PropTypes.number,
       flowerSlug: React.PropTypes.string,
     }).isRequired,
+    class: PropTypes.object,
+    order: PropTypes.object,
     router: PropTypes.object,
   };
 
@@ -63,9 +65,13 @@ class Flower extends Component {
                 {this.props.flower.classAndOrder &&
                   <dt>Class and Order</dt>
                 }
-                {this.props.flower.classAndOrder &&
+                {this.props.flower.class && this.props.flower.order &&
                   <dd id="category" className="class-and-order" itemProp="genre">
-                    {this.props.flower.classAndOrder}
+                    <Link to={`/class/${this.props.class.slug}`}>
+                      {this.props.class.name}
+                    </Link> <Link to={`/order/${this.props.order.slug}`}>
+                      {this.props.order.name}
+                    </Link>
                   </dd>
                 }
 
@@ -103,6 +109,10 @@ class Flower extends Component {
                 Illustration of <em>{this.props.flower.latinName}</em> drawn from the living plant and coloured as near to nature.
               </figcaption>
             </figure>
+            <nav>
+              <FlowerLink className="page-link page-link--next" flower={this.props.flower}>{`Next page >`}</FlowerLink>
+              <FlowerLink className="page-link page-link--previous" flower={this.props.flower}>{`< Previous page`}</FlowerLink>
+            </nav>
           </div>
           <footer>
             <div>
