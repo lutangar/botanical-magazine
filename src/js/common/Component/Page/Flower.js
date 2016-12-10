@@ -5,14 +5,16 @@ import FlowerLink from '../Flower/FlowerLink';
 
 class Flower extends Component {
   static propTypes = {
+    previousFlower: PropTypes.object,
     flower: PropTypes.object.isRequired,
+    nextFlower: PropTypes.object,
     params: React.PropTypes.shape({
       volumeNumber: React.PropTypes.number,
       flowerSlug: React.PropTypes.string,
     }).isRequired,
     class: PropTypes.object,
     order: PropTypes.object,
-    router: PropTypes.object,
+    router: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
@@ -20,6 +22,7 @@ class Flower extends Component {
       genericCharacters: [],
       synonyms: [],
       pages: [],
+      description: '',
     },
   };
 
@@ -98,11 +101,15 @@ class Flower extends Component {
                 )}
               </section>
             </div>
-            <figure className="illustration mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
+            <figure
+              className="illustration mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet"
+              style={{ maxWidth: `${this.props.flower.image.width}px`}}
+            >
+              <span className="plate__number" itemProp="position">{this.props.flower.id}</span>
               <img
                 id="image"
                 itemProp="image"
-                src={`/img/flower/${this.props.flower.image}`}
+                src={`/img/flower/${this.props.flower.image.name}`}
                 alt={this.props.flower.latinName}
               />
               <figcaption>
@@ -110,8 +117,12 @@ class Flower extends Component {
               </figcaption>
             </figure>
             <nav>
-              <FlowerLink className="page-link page-link--next" flower={this.props.flower}>{`Next page >`}</FlowerLink>
-              <FlowerLink className="page-link page-link--previous" flower={this.props.flower}>{`< Previous page`}</FlowerLink>
+              {this.props.nextFlower &&
+                <FlowerLink className="page-link page-link--next" flower={this.props.nextFlower}>{`Next page >`}</FlowerLink>
+              }
+              {this.props.previousFlower &&
+                <FlowerLink className="page-link page-link--previous" flower={this.props.previousFlower}>{`< Previous page`}</FlowerLink>
+              }
             </nav>
           </div>
           <footer>

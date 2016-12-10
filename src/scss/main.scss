@@ -1,4 +1,5 @@
 @import "grid";
+@import "mixins";
 
 * {
   font-family: Libre Baskerville, serif;
@@ -141,9 +142,14 @@ p {
   }
 }
 
-.flower {
+.flower, .order, .class {
   h1 {
     margin: 0.83em 0 0 0;
+  }
+
+  .mdl-grid {
+    align-items: flex-start;
+    justify-content: space-around;
   }
 }
 
@@ -225,13 +231,20 @@ dl {
 }
 
 .illustration {
+  @include shadow-2dp;
+  border-radius: 2px;
+  position: relative;
+  .plate__number {
+    font-size: 20px;
+    color: #383838;
+  }
   img {
-    width: 100%;
+    max-width: 100%;
   }
   figcaption {
     text-align: center;
     font-style: italic;
-    padding: 5px;
+    padding: 24px 16px 24px 16px;
     color: dimgrey;
 
     em {
@@ -267,17 +280,31 @@ footer {
 .taxonomy {
   list-style-type: upper-roman;
   font-variant: small-caps;
+  display: flex;
+  flex-direction: column;
+  height: 1500px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+
+  li {
+    width: 180px;
+  }
+
+  > li {
+    margin: 4px;
+  }
 }
 
 .page-link {
-  box-shadow: 0 1px 1.5px 0 rgba(0,0,0,0.12), 0 1px 1px 0 rgba(0,0,0,0.24);
+  @include shadow-6dp();
+  border-radius: 2px;
   position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
   bottom: 0;
-  width: 10em;
-  height: 5em;
+  padding: 24px 16px 24px 16px;
   background-color: white;
   font-variant: small-caps;
   text-decoration: none;
@@ -298,46 +325,56 @@ footer {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  justify-content: space-around;
 }
 
 .plate {
+  @include shadow-2dp();
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 1px 1.5px 0 rgba(0,0,0,0.12), 0 1px 1px 0 rgba(0,0,0,0.24);
   overflow: hidden;
   border-radius: 2px;
   margin: 0.84em;
+  min-width: 25%;
 
   .plate__background {
     position: relative;
     display: flex;
-    height: 14em;
     width: 100%;
     box-sizing: border-box;
     padding: 16px;
-    .plate__number {
-      position: absolute;
-      right: 16px;
-      top: 16px;
-      font-family: 'Pinyon Script', cursive;
-    }
   }
-  [itemProp="alternateName"] {
-    color: rgba(0,0,0,.54);
-    line-height: 18px;
-    overflow: hidden;
-    padding: 0 16px 24px 16px;
-    margin: 0;
-    text-align: left;
-    font-size: 14px;
+
+  .plate__text {
+    padding: 24px 16px 24px 16px;
   }
 
   .plate__title {
     margin: 0;
-    padding: 24px 16px 0 16px;
     font-weight: 500;
     font-variant: small-caps;
   }
 
+  [itemProp="alternateName"] {
+    color: rgba(0,0,0,.54);
+    line-height: 18px;
+    overflow: hidden;
+    margin: 0;
+    text-align: left;
+    font-size: 14px;
+  }
+}
+
+.plate__number {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  font-family: 'Pinyon Script', cursive;
+}
+
+.plate--thumbnail {
+  .plate__background {
+    height: 14em;
+  }
 }
