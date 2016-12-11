@@ -17,7 +17,9 @@ class FlowerCard extends Component {
       >
         <div
           className="plate__background"
-          style={{ background: `url('/img/flower/${this.props.flower.image.name}') top / cover` }}
+          style={{
+            backgroundImage: `url('/img/flower/${this.props.flower.image.name}')`,
+          }}
         >
           <span className="plate__number" itemProp="position">{this.props.flower.id}</span>
         </div>
