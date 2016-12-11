@@ -29,6 +29,13 @@
     "no-unused-vars": "warn",
     "prefer-const": "warn",
     "no-nested-ternary": "warn",
+    "comma-dangle": ["warn", {
+      "arrays": "always-multiline",
+      "objects": "always-multiline",
+      "imports": "always-multiline",
+      "exports": "always-multiline",
+      "functions": "ignore"
+    }],
     "import/prefer-default-export": "off",
     "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
     "react/prefer-stateless-function": "warn"
