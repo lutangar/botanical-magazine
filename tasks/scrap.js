@@ -20,6 +20,7 @@ fs.readdir(downloadDir, (err, files ) => {
   const database = {
     volumes: [],
     flowers: [],
+    genera: [],
     classes: [
       {
         id: 1,
@@ -482,11 +483,26 @@ fs.readdir(downloadDir, (err, files ) => {
         const allNames = $('h2 span.smcap, p.center').first().text().split(/\.|,/g).filter(name => name !== '').map(name => name.trim());
 
         flower.latinName = allNames.splice(0, 1)[0];
+
+        const genusName = flower.latinName.split(' ')[0];
+        const maxId = Math.max(...database.genera.map(g => g.id), 0);
+        let genus = database.genera.find(g => g.name === genusName);
+        if (genus) {
+          genus.flowers.push(flower.id);
+        } else {
+          genus = {
+            id: maxId+1,
+            name: genusName,
+            flowers: [flower.id],
+          };
+          database.genera.push(genus)
+        }
+        flower.genus = genus.id;
+
         flower.commonName = allNames.join(' ');
         if (flower.latinName == "Franklin's Tartar") {
           flower.commonName =  $('h2 + p.center + p.center i').text();
         }
-        // console.log(flower.latinName);
         flower.slug = slug(flower.latinName, {
           lower: true,
           replacement: '-',
@@ -544,7 +560,6 @@ fs.readdir(downloadDir, (err, files ) => {
         ;
 
         const classAndOrderParts = flower.classAndOrder.split(' ').filter(p => p != '');
-        console.log(classAndOrderParts);
         if (classAndOrderParts.length) {
           const className = classAndOrderParts.splice(0, 1)[0];
           const classe = database.classes.sort((a, b) => {
@@ -631,6 +646,10 @@ fs.readdir(downloadDir, (err, files ) => {
 
         volume.numberOfPages = flower.pages.length ? flower.pages.reduce((p, v) => (p < v ? p : v)) : 0;
       }
+
+      database.flowers = database.flowers.map((f) => {
+        return { ...f, species: database.genera.find(g => g.id === f.genus).flowers.filter(id => id !== f.id) };
+      });
 
       database.volumes.push(volume);
 

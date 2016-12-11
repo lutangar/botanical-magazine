@@ -4,6 +4,7 @@ import CustomPropTypes from '../../PropTypes';
 import Link from '../Link';
 import VolumeLink from '../Volume/VolumeLink';
 import FlowerLink from '../Flower/FlowerLink';
+import FlowerCard from '../Flower/FlowerCard';
 
 class Flower extends Component {
   static propTypes = {
@@ -59,7 +60,7 @@ class Flower extends Component {
 
           <div className="mdl-grid">
             <div className="sheet mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet">
-              <div id="title">
+              <div className="flower__full-name">
                 <h1 itemProp="name">{this.props.flower.latinName}</h1>
                 {this.props.flower.commonName &&
                   <em itemProp="alternateName">{this.props.flower.commonName}</em>
@@ -70,10 +71,10 @@ class Flower extends Component {
                   <dt>Class and Order</dt>
                 }
                 {this.props.flower.class && this.props.flower.order &&
-                  <dd id="category" className="class-and-order" itemProp="genre">
-                    <Link to={`/class/${this.props.class.slug}`}>
+                  <dd className="class-and-order" itemProp="genre">
+                    <Link className="class" to={`/class/${this.props.class.slug}`}>
                       {this.props.class.name}
-                    </Link> <Link to={`/order/${this.props.order.slug}`}>
+                    </Link> <Link className="order" to={`/order/${this.props.order.slug}`}>
                       {this.props.order.name}
                     </Link>
                   </dd>
@@ -103,29 +104,43 @@ class Flower extends Component {
               </section>
             </div>
             <figure
-              className="illustration mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet"
+              className="plate illustration mdl-cell mdl-cell--6-col mdl-cell--12-col-tablet"
               style={{ maxWidth: `${this.props.flower.image.width}px`}}
             >
               <span className="plate__number" itemProp="position">{this.props.flower.id}</span>
               <img
-                id="image"
                 itemProp="image"
                 src={`/img/flower/${this.props.flower.image.name}`}
                 alt={this.props.flower.latinName}
               />
-              <figcaption>
-                Illustration of <em>{this.props.flower.latinName}</em> drawn from the living plant and coloured as near to nature.
+              <figcaption className="plate__text">
+                <div className="plate__title" itemProp="name">{this.props.flower.latinName}</div>
+                {this.props.flower.commonName &&
+                <em className="plate__alternate">{this.props.flower.commonName}</em>
+                }
               </figcaption>
             </figure>
-            <nav>
-              {this.props.nextFlower &&
-                <FlowerLink className="page-link page-link--next" flower={this.props.nextFlower}>{`Next page >`}</FlowerLink>
-              }
-              {this.props.previousFlower &&
-                <FlowerLink className="page-link page-link--previous" flower={this.props.previousFlower}>{`< Previous page`}</FlowerLink>
-              }
-            </nav>
           </div>
+
+          {this.props.species.length > 0 &&
+            <section>
+              <h2>Other species of the <em>{this.props.genus.name}</em> genus</h2>
+              <div className="plates">
+                 {this.props.species.map(s =>
+                   <FlowerCard flower={s} />
+                 )}
+              </div>
+            </section>
+          }
+
+          <nav>
+            {this.props.nextFlower &&
+              <FlowerLink className="page-link page-link--next" flower={this.props.nextFlower}>{`Next page >`}</FlowerLink>
+            }
+            {this.props.previousFlower &&
+              <FlowerLink className="page-link page-link--previous" flower={this.props.previousFlower}>{`< Previous page`}</FlowerLink>
+            }
+          </nav>
           <footer>
             <div>
               Originally appears at pages
@@ -144,7 +159,7 @@ class Flower extends Component {
                 itemType="https://schema.org/Person"
                 href="https://en.wikipedia.org/wiki/William_Curtis"
               >
-                <span id="author" itemProp="name">William Curtis</span>
+                <span className="author" itemProp="name">William Curtis</span>
               </a> published in <span className="datePublished" itemProp="datePublished">{this.props.flower.datePublished}</span>
             </div>
             <div>
