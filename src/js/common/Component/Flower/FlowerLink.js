@@ -1,14 +1,10 @@
 import React, { PropTypes, Component } from 'react';
+import CustomPropTypes from '../../PropTypes';
 import Link from '../Link';
 
 class FlowerLink extends Component {
   static propTypes = {
-    flower: PropTypes.shape({
-      slug: PropTypes.string,
-      latinName: PropTypes.string,
-      commonName: PropTypes.string,
-      volume: PropTypes.number,
-    }).isRequired,
+    flower: CustomPropTypes.flower.isRequired,
     itemScope: PropTypes.bool,
     itemProp: PropTypes.string,
     isPartOf: PropTypes.bool,

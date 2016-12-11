@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
+import CustomPropTypes from '../../PropTypes';
 import FlowerLink from './FlowerLink';
 
 class FlowerCard extends Component {
   static propTypes = {
-    flower: PropTypes.object.isRequired,
-    hasPart: PropTypes.bool,
+    flower: CustomPropTypes.flower.isRequired,
   };
 
   render() {

@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
-import roman from 'roman-decimal';
+import CustomPropTypes from '../../PropTypes';
 import Link from '../Link';
 
 class LinnaeanSystem extends Component {
   static propTypes = {
-    classes: PropTypes.array.isRequired,
+    classes: PropTypes.arrayOf(CustomPropTypes.linnaeanClass).isRequired,
   };
 
   static defaultProps = {
@@ -84,7 +84,7 @@ class LinnaeanSystem extends Component {
               <img
                 id="image"
                 itemProp="image"
-                src={`/img/linnaean_system_character_first_ten_classes.jpg`}
+                src="/img/linnaean_system_character_first_ten_classes.jpg"
                 alt="The character of the first ten classes of the Linnaean System of Botany"
               />
               <figcaption>The character of the first ten classes of The Linnaean System of Botany</figcaption>

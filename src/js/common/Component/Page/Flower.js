@@ -1,20 +1,21 @@
 import React, { Component, PropTypes } from 'react';
+import { routerShape } from 'react-router';
+import CustomPropTypes from '../../PropTypes';
 import Link from '../Link';
 import VolumeLink from '../Volume/VolumeLink';
 import FlowerLink from '../Flower/FlowerLink';
 
 class Flower extends Component {
   static propTypes = {
-    previousFlower: PropTypes.object,
-    flower: PropTypes.object.isRequired,
-    nextFlower: PropTypes.object,
+    previousFlower: CustomPropTypes.flower,
+    flower: CustomPropTypes.flower.isRequired,
+    nextFlower: CustomPropTypes.flower,
     params: React.PropTypes.shape({
-      volumeNumber: React.PropTypes.number,
-      flowerSlug: React.PropTypes.string,
+      flowerSlug: React.PropTypes.string.isRequired,
     }).isRequired,
-    class: PropTypes.object,
-    order: PropTypes.object,
-    router: PropTypes.object.isRequired,
+    class: CustomPropTypes.linnaeanClass,
+    order: CustomPropTypes.linnaeanOrder,
+    router: routerShape.isRequired,
   };
 
   static defaultProps = {

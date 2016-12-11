@@ -1,9 +1,10 @@
 import React, { PropTypes, Component } from 'react';
+import CustomPropTypes from '../../PropTypes';
 import FlowerCard from '../Flower/FlowerCard';
 
 class VolumeIndex extends Component {
   static propTypes = {
-    flowers: PropTypes.array.isRequired,
+    flowers: PropTypes.arrayOf(CustomPropTypes.flower).isRequired,
   };
 
   static defaultProps = {

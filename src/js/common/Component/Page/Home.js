@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import CustomPropTypes from '../../PropTypes';
 import VolumeIndex from '../Volume/VolumeIndex';
 import VolumeLink from '../Volume/VolumeLink';
 import PersonLink from '../PersonLink';
@@ -6,7 +7,7 @@ import Link from '../Link';
 
 class Home extends Component {
   static propTypes = {
-    volumes: PropTypes.array.isRequired,
+    volumes: PropTypes.arrayOf(CustomPropTypes.flower).isRequired,
   };
 
   static defaultProps = {

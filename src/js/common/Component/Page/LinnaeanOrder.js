@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react';
+import { routerShape } from 'react-router';
+import CustomPropTypes from '../../PropTypes';
 import FlowerCard from '../Flower/FlowerCard';
 import Link from '../Link';
 
 class LinnaeanOrder extends Component {
   static propTypes = {
     params: PropTypes.shape({
-      orderSlug: React.PropTypes.string,
+      orderSlug: React.PropTypes.string.isRequired,
     }).isRequired,
-    order: PropTypes.object.isRequired,
-    flowers: PropTypes.arrayOf(PropTypes.shape({
-      id: React.PropTypes.number,
-      latinName: React.PropTypes.string,
-    })).isRequired,
+    order: CustomPropTypes.linnaeanOrder.isRequired,
+    flowers: PropTypes.arrayOf(CustomPropTypes.flower).isRequired,
+    router: routerShape.isRequired,
   };
 
   static defaultProps = {

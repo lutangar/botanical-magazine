@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import roman from 'roman-decimal';
+import CustomPropTypes from '../../PropTypes';
 import VolumeIndex from '../Volume/VolumeIndex';
 import VolumeLink from '../Volume/VolumeLink';
 import Link from '../Link';
@@ -7,9 +8,9 @@ import Link from '../Link';
 class Volume extends Component {
   static propTypes = {
     params: PropTypes.shape({
-      volumeNumber: React.PropTypes.string,
+      volumeNumber: React.PropTypes.string.isRequired,
     }).isRequired,
-    volume: PropTypes.object.isRequired,
+    volume: CustomPropTypes.volume.isRequired,
   };
 
   render() {
