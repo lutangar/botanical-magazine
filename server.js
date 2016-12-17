@@ -12,6 +12,7 @@ const port = 3000;
 
 app.use('/js', express.static('public/js'));
 app.use('/img', express.static('public/img'));
+app.use('/css', express.static('public/css'));
 
 // This is fired every time the server side receives a request
 app.use(handleRender);
@@ -54,6 +55,7 @@ function renderFullPage(html, head, preloadedState) {
         ${head.title.toString()}
         ${head.meta.toString()}
         ${head.link.toString()}
+        <link rel="stylesheet" href="/css/tbm.css" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Libre+Baskerville" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Pinyon+Script" />
         <script type="text/javascript">
