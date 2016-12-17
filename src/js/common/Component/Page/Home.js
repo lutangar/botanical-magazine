@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
+import { BASE_URL } from '../../Constant';
 import CustomPropTypes from '../../PropTypes';
 import VolumeIndex from '../Volume/VolumeIndex';
 import VolumeLink from '../Volume/VolumeLink';
@@ -14,9 +16,87 @@ class Home extends Component {
     volumes: [],
   };
 
+  static keywords = [
+    'The Botanical Magazine',
+    'Flower garden displayed',
+    'William Curtis',
+    'flower',
+    'flowers',
+    'plant',
+    'plants',
+    'garden',
+    'gardening',
+    'gardening',
+    'antique book',
+    'botanic',
+    'botanic',
+    'botany',
+    'botanical magazine',
+    'botanic periodical',
+    'botanical plate',
+    'botanical illustration',
+    'flower illustration',
+    'Linnæan taxonomy',
+    '18th century',
+  ];
+
+  get title() {
+    return 'The Botanic Magazine or, Flower-Garden Displayed';
+  }
+
+  get description() {
+    return 'The most Ornamental Foreign Plants, cultivated in the Open Ground, \
+      the Green-House, and the Stove, are accurately represented in their natural Colours. \
+      Their Names, Class, Order, Generic and Specific Characters, according to \
+      the celebrated Linn&aelig;us; ; their Places of Growth, and Times of Flowering : \
+      together with the most approved methods of culture.'
+    ;
+  }
+
+  get keywords() {
+    return [
+      ...Home.keywords,
+      '1787',
+    ].concat(', ');
+  }
+
+  get URL() {
+    return BASE_URL;
+  }
+
+  get imagePath() {
+    return `${BASE_URL}/img/The_Botanical_Magazine_front_page.jpg`;
+  }
+
   render() {
     return (
       <div className="home" itemScope itemType="https://schema.org/Periodical">
+        <Helmet
+          htmlAttributes={{ lang: 'en', amp: undefined }}
+          title={this.title}
+          base={{ target: '_blank', href: this.URL}}
+          meta={[
+            { name: 'description', content: this.description },
+            { name: 'keywords', content: this.keywords },
+
+            { name: 'twitter:card', content: 'summary' },
+            { name: 'twitter:creator', content: '@lutangar' },
+            { name: 'twitter:url', content: this.URL },
+            { name: 'twitter:title', content: this.title },
+            { name: 'twitter:description', content: this.description },
+            { name: 'twitter:image', content: this.imagePath },
+
+            { name: 'og:url', content: this.URL },
+            { name: 'og:image', content: this.imagePath },
+            { name: 'og:description', content: this.description },
+            { name: 'og:title', content: this.title },
+            { name: 'og:site_name', content: 'The Botanical Magazine' },
+            { name: 'og:see_also', content: this.URL },
+          ]}
+          link={[
+            { rel: 'canonical', href: this.URL },
+          ]}
+        />
         <link itemProp="additionalType" href="http://schema.org/DataCatalog" />
         <header>
           <h1 itemProp="name">

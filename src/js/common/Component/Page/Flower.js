@@ -1,7 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { routerShape } from 'react-router';
+import Helmet from 'react-helmet';
+import { BASE_URL } from '../../Constant';
 import CustomPropTypes from '../../PropTypes';
 import Link from '../Link';
+import Home from '../Page/Home';
 import VolumeLink from '../Volume/VolumeLink';
 import FlowerLink from '../Flower/FlowerLink';
 import FlowerCard from '../Flower/FlowerCard';
@@ -36,10 +39,66 @@ class Flower extends Component {
     }
   }
 
+  get title() {
+    return `${this.props.flower.latinName} - ${this.props.flower.commonName}`;
+  }
+
+  get description() {
+    return this.props.flower.description.split('\n')[0];
+  }
+
+  get keywords() {
+    return [
+      this.props.flower.latinName,
+      this.props.flower.commonName,
+      this.props.flower.datePublished,
+      this.props.class.name,
+      this.props.order.name,
+      this.props.genus.name,
+      `The Botanical Magazine Volume ${this.props.flower.volume}`,
+      ...Home.keywords,
+    ].concat(', ');
+  }
+
+  get imagePath() {
+    return `${BASE_URL}/img/flower/${this.props.flower.image.name}`;
+  }
+
+  get URL() {
+    return `${BASE_URL}/flower/${this.props.flower.slug}`;
+  }
+
   render() {
     // parse description for: flower names, country, reference (what kind?)
     return (
       <div className="flower">
+        <Helmet
+          htmlAttributes={{ lang: 'en', amp: undefined }}
+          title={this.title}
+          base={{target: '_blank', href: BASE_URL }}
+          meta={[
+            { name: 'description', content: this.description },
+            { name: 'keywords', content: this.keywords },
+
+            { name: 'twitter:card', content: 'summary_large_image' },
+            { name: 'twitter:creator', content: '@lutangar' },
+            { name: 'twitter:url', content: this.URL },
+            { name: 'twitter:title', content: this.title },
+            { name: 'twitter:description', content: this.description },
+            { name: 'twitter:image', content: this.imagePath },
+
+            { name: 'og:url', content: this.URL },
+            { name: 'og:image', content: this.imagePath },
+            { name: 'og:description', content: this.description },
+            { name: 'og:title', content: this.title },
+            { name: 'og:site_name', content: 'The Botanical Magazine' },
+            { name: 'og:see_also', content: BASE_URL },
+          ]}
+          link={[
+            { rel: 'canonical', href: this.URL },
+          ]}
+        />
+
         <ol itemScope itemType="http://schema.org/BreadcrumbList">
           <li itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
             <Link itemProp="item" to="/">The Botanical Magazine</Link>
@@ -74,7 +133,7 @@ class Flower extends Component {
                   <dd className="class-and-order" itemProp="genre">
                     <Link className="class" to={`/class/${this.props.class.slug}`}>
                       {this.props.class.name}
-                    </Link> <Link className="order" to={`/order/${this.props.order.slug}`}>
+                    </Link>&nbsp;<Link className="order" to={`/order/${this.props.order.slug}`}>
                       {this.props.order.name}
                     </Link>
                   </dd>
@@ -110,7 +169,7 @@ class Flower extends Component {
               <span className="plate__number" itemProp="position">{this.props.flower.id}</span>
               <img
                 itemProp="image"
-                src={`/img/flower/${this.props.flower.image.name}`}
+                src={this.imagePath}
                 alt={this.props.flower.latinName}
               />
               <figcaption className="plate__text">

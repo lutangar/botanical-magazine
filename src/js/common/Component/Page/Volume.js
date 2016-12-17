@@ -1,9 +1,12 @@
 import React, { Component, PropTypes } from 'react';
+import Helmet from 'react-helmet';
 import roman from 'roman-decimal';
+import { BASE_URL } from '../../Constant';
 import CustomPropTypes from '../../PropTypes';
 import VolumeIndex from '../Volume/VolumeIndex';
 import VolumeLink from '../Volume/VolumeLink';
 import Link from '../Link';
+import Home from '../Page/Home';
 
 class Volume extends Component {
   static propTypes = {
@@ -13,9 +16,53 @@ class Volume extends Component {
     volume: CustomPropTypes.volume.isRequired,
   };
 
+  get title() {
+    return `The Botanical Magazine Volume ${this.props.volume.number}`;
+  }
+
+  get description() {
+    return `${this.title}. ${this.props.volume.quote}`;
+  }
+
+  get keywords() {
+    return [
+      this.title,
+      this.props.volume.datePublished,
+      ...Home.keywords,
+    ].concat(', ');
+  }
+
+  get URL() {
+    return `${BASE_URL}/volume/${this.props.volume.number}`;
+  }
+
   render() {
     return (
       <div className="volume">
+        <Helmet
+          htmlAttributes={{ lang: 'en', amp: undefined }}
+          title={this.title}
+          base={{ target: '_blank', href: BASE_URL }}
+          meta={[
+            { name: 'description', content: this.description },
+            { name: 'keywords', content: this.keywords },
+
+            { name: 'twitter:card', content: 'summary' },
+            { name: 'twitter:creator', content: '@lutangar' },
+            { name: 'twitter:url', content: this.URL },
+            { name: 'twitter:title', content: this.title },
+            { name: 'twitter:description', content: this.description },
+
+            { name: 'og:url', content: this.URL },
+            { name: 'og:description', content: this.description },
+            { name: 'og:title', content: this.title },
+            { name: 'og:site_name', content: 'The Botanical Magazine' },
+            { name: 'og:see_also', content: BASE_URL },
+          ]}
+          link={[
+            { rel: 'canonical', href: this.URL },
+          ]}
+        />
         <ol itemScope itemType="http://schema.org/BreadcrumbList" role="nav">
           <li itemProp="itemListElement" itemScope itemType="http://schema.org/ListItem">
             <Link itemProp="item" to="/">
@@ -48,7 +95,7 @@ class Volume extends Component {
               <blockquote>
                 {this.props.volume.quote}
               </blockquote>
-              <figcaption>{this.props.volume.author}</figcaption>
+              <figcaption>{this.props.volume.quote.author}</figcaption>
             </figure>
           }
 

@@ -21,7 +21,7 @@ const flower = PropTypes.shape({
   latinName: PropTypes.string.isRequired,
   commonName: PropTypes.string,
   slug: PropTypes.string.isRequired,
-  volume: PropTypes.number,
+  volume: PropTypes.number.isRequired,
   class: PropTypes.number,
   order: PropTypes.number,
   image,
