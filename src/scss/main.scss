@@ -365,6 +365,9 @@ footer {
 
 .plate--thumbnail {
   margin: .84em;
+  &:hover {
+    background-color: rgba(0,0,0,.05);
+  }
   .plate__background {
     height: 14em;
   }
