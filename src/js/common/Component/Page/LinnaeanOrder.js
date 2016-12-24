@@ -50,7 +50,7 @@ class LinnaeanOrder extends Component {
   }
 
   get URL() {
-    return `${BASE_URL}/order/${this.props.class.slug}`;
+    return `${BASE_URL}/order/${this.props.order.slug}`;
   }
 
   render() {
