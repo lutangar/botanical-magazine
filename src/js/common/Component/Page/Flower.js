@@ -114,7 +114,7 @@ class Flower extends Component {
           </li>
         </ol>
 
-        <article itemScope itemType="http://schema.org/Dataset">
+        <article itemScope itemProp="mainEntity" itemType="http://schema.org/Dataset">
           <meta itemProp="position" content={this.props.flower.id} />
 
           <div className="mdl-grid">
@@ -182,7 +182,7 @@ class Flower extends Component {
           </div>
 
           {this.props.species.length > 0 &&
-            <section>
+            <section itemScope itemType="http://schema.org/mentions">
               <h2>Other species of the <em>{this.props.genus.name}</em> genus</h2>
               <div className="plates">
                  {this.props.species.map(s =>

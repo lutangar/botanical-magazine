@@ -223,7 +223,7 @@ class Home extends Component {
           <p itemProp="isAccessibleForFree">true</p>
           <p>
             <a href="http://www.gutenberg.org/ebooks/author/7233">
-              More freed works from <span itemProp="author">William Curtis</span> can be found at Gutemberg.org
+              More freed works from William Curtis can be found at Gutemberg.org
             </a>
           </p>
           <p>

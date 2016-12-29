@@ -110,7 +110,7 @@ class Volume extends Component {
 
           <footer>
             <p>
-              <span itemScope itemProp="isPartOf" itemType="https://schema.org/BookSeries">
+              <span itemScope itemProp="isPartOf" itemType="https://schema.org/Periodical">
                 <Link itemProp="url" to="/">
                   <span itemProp="name">The Botanical Magazine</span>
                 </Link>&nbsp;-&nbsp;

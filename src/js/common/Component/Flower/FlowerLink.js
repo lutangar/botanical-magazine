@@ -36,7 +36,11 @@ class FlowerLink extends Component {
     }
 
     return (
-      <Link {...linkProps} to={`/flower/${this.props.flower.slug}`}>
+      <Link
+        {...linkProps}
+        to={`/flower/${this.props.flower.slug}`}
+        title={`${this.props.flower.latinName}, ${this.props.flower.commonName}`}
+      >
         {this.props.children ||
           <span {...spanProps}>
             {`${this.props.flower.latinName}, ${this.props.flower.commonName}`}
